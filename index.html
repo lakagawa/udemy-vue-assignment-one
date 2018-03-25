@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 1</title>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+    <link rel="stylesheet" href="layout.css" media="all"></link>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="newHobby" /> <button v-on:click="addHobby">Add hobby</button>
+        <p v-bind:style="{'display': displayItem()}">Last Removed: {{ itemRemovido != null ? itemRemovido.description : ""}}</p>
+
+        <p v-bind:class="getClass()">Number of hobby: {{ counter }}</p>
+        <ul>
+            <!-- <li v-for="hobby in list" v-on:click="hobbyClicked(hobby.id)" v-bind:id="hobby.id">{{hobby.description}}</li> -->
+            <app-li-hobby v-for="item in list" v-bind:item="item"></app-li-hobby>
+        </ul>
+    </div>
+    <script type="text/javascript" src="core.js"></script>
+</body>
+</html>
