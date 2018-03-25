@@ -1,8 +1,10 @@
 Vue.component('app-li-hobby', {
     props:['item'],
-    template: ('<li>{{ item.description }}</li>'),
+    template: ('<li class="collection-item" v-on:click="itemClicked">{{ item.description }}</li>'),
     methods:{
-        
+        itemClicked(){
+            this.$emit('itemclicked', this.item)
+        }
     }
 });
 
@@ -12,11 +14,14 @@ new Vue({
         list: [{ description: 'Play basketball', id: _.uniqueId(), deleted: false}],
         newHobby: '',
         itemRemovido: null,
-        counter: 1
+        counter: 1, 
+        newHobbyError: false,
+        labelNumber: 'Number'
     },
     methods: {
         addHobby(){
             if(this.newHobby != ""){
+                this.newHobbyError = false;
                 var obj = {
                     id: _.uniqueId(),
                     description: this.newHobby,
@@ -26,6 +31,14 @@ new Vue({
                 this.counter = this.list.length;
                 this.newHobby = '';
             }
+            else {
+                this.newHobbyError = true;
+            }
+
+            this.labelNumber = this.fixLabelNumber();
+        },
+        itemWasClicked(item){
+            this.hobbyClicked(item.id);
         },
         hobbyClicked(id){
             debugger;
@@ -44,13 +57,20 @@ new Vue({
             this.list = lista;
             this.counter = this.list.length;
             this.itemRemovido = item;
+            this.labelNumber = this.fixLabelNumber();
         },
         displayItem(){
             return (this.itemRemovido != null ? 'block' : 'none');
         },
         getClass(){
             return (this.list.length > 3 ? 'red_class' : 'green_class');
-
+        },
+        hasError(){
+            debugger;
+            return(this.newHobbyError ? 'invalid' : '');
+        },
+        fixLabelNumber(){
+            return this.counter > 1 ? 'Numbers' : 'Number'
         }
     }
 })
