@@ -26,7 +26,7 @@
                 <div class="row">
                         <p v-bind:style="{'display': displayItem()}">Last Removed: {{ itemRemovido != null ? itemRemovido.description : ""}}</p>
 
-                        <p v-bind:class="getClass()">{{ labelNumber}} of hobby: {{ counter }}</p>
+                        <p v-bind:class="getClass()">{{ labelNumber}} : {{ counter }}</p>
                         <ul class="collection">
                             <!-- <li v-for="hobby in list" v-on:click="hobbyClicked(hobby.id)" v-bind:id="hobby.id">{{hobby.description}}</li> -->
                             <app-li-hobby v-for="item in list"  v-bind:item="item" v-on:itemclicked="itemWasClicked($event)"></app-li-hobby>

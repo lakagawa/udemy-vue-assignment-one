@@ -16,7 +16,7 @@ new Vue({
         itemRemovido: null,
         counter: 1, 
         newHobbyError: false,
-        labelNumber: 'Number'
+        labelNumber: 'Number of hobby'
     },
     methods: {
         addHobby(){
@@ -70,7 +70,7 @@ new Vue({
             return(this.newHobbyError ? 'invalid' : '');
         },
         fixLabelNumber(){
-            return this.counter > 1 ? 'Numbers' : 'Number'
+            return this.counter > 1 ? 'Numbers of hobbies' : 'Number of hobby'
         }
     }
 })
