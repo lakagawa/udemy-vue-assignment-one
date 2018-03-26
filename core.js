@@ -14,7 +14,6 @@ new Vue({
         list: [{ description: 'Play basketball', id: _.uniqueId(), deleted: false}],
         newHobby: '',
         itemRemovido: null,
-        counter: 1, 
         newHobbyError: false,
         labelNumber: 'Number of hobby'
     },
@@ -28,7 +27,6 @@ new Vue({
                     deleted: false
                 }
                 this.list.push(obj);
-                this.counter = this.list.length;
                 this.newHobby = '';
             }
             else {
@@ -41,7 +39,6 @@ new Vue({
             this.hobbyClicked(item.id);
         },
         hobbyClicked(id){
-            debugger;
             var item = null;
             var lista = this.list.filter(function(el){
                 if(el.id == id){
@@ -55,7 +52,6 @@ new Vue({
             }
            
             this.list = lista;
-            this.counter = this.list.length;
             this.itemRemovido = item;
             this.labelNumber = this.fixLabelNumber();
         },
@@ -66,11 +62,10 @@ new Vue({
             return (this.list.length > 3 ? 'red_class' : 'green_class');
         },
         hasError(){
-            debugger;
             return(this.newHobbyError ? 'invalid' : '');
         },
         fixLabelNumber(){
-            return this.counter > 1 ? 'Numbers of hobbies' : 'Number of hobby'
+            return this.list.length > 1 ? 'Numbers of hobbies' : 'Number of hobby'
         }
     }
 })
